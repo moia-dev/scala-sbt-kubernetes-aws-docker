@@ -1,9 +1,10 @@
-Dockerfile that contains
+# Dockerfile that contains
 # - Scala
 # - SBT
 # - kubectl
 # - kops
 # - AWS CLI
+# - Docker
 
 # Pull base image
 FROM openjdk:8u151
@@ -11,16 +12,9 @@ FROM openjdk:8u151
 # Environment variables
 ENV SCALA_VERSION=2.12.4
 ENV SBT_VERSION=1.0.4
-ENV KOPS_VERSION=1.7.1
 ENV KUBECTL_VERSION=v1.8.3
+ENV KOPS_VERSION=1.7.1
 ENV HOME=/config
-
-# Download needed libraries
-RUN set -x && \
-  apt-get install -y software-properties-common apt-transport-https  && \
-  curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | apt-key add -  && \
-  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"  && \
-  apt-get update && apt-get install -y docker-ce
 
 # Scala expects this file
 RUN touch /usr/lib/jvm/java-8-openjdk-amd64/release
@@ -66,6 +60,13 @@ RUN set -x && \
     # Create non-root user (with a randomly chosen UID/GUI).
     adduser kubectl -Du 2342 -h /config && \
     kubectl version --client
+
+# Install Docker
+RUN set -x && \
+  apt-get install -y software-properties-common apt-transport-https  && \
+  curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | apt-key add -  && \
+  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"  && \
+  apt-get update && apt-get install -y docker-ce
 
 # Define working directory
 WORKDIR /root
