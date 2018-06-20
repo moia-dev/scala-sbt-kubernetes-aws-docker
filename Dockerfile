@@ -7,13 +7,13 @@
 # - Docker
 
 # Pull base image
-FROM openjdk:8u151
+FROM openjdk:8u171
 
 # Environment variables
-ENV SCALA_VERSION=2.12.5
-ENV SBT_VERSION=1.0.4
-ENV KUBECTL_VERSION=v1.8.3
-ENV KOPS_VERSION=1.7.1
+ENV SCALA_VERSION=2.12.6
+ENV SBT_VERSION=1.1.6
+ENV KUBECTL_VERSION=v1.10.4
+ENV KOPS_VERSION=1.9.1
 ENV HOME=/config
 
 # Scala expects this file
