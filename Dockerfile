@@ -70,3 +70,12 @@ RUN set -x && \
 
 # Define working directory
 WORKDIR /root
+
+# Add the Amazon RDS certificates to the java env
+COPY import-rds-certs.sh . 
+
+RUN chmod 777 import-rds-certs.sh
+
+RUN /root/import-rds-certs.sh
+
+
