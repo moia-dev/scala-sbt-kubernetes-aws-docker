@@ -31,6 +31,28 @@ docker build -t moia/scala-sbt-kubernetes-aws-docker github.com/moia-dev/scala-s
 docker run -it --rm moia/scala-sbt-kubernetes-aws-docker
 ```
 
+## Development Notes
+
+### Building and publishing docker image
+
+1. Pull latest version from github:
+
+   ```
+   git pull origin master
+   git fetch --tags
+   ```
+2. Build Docker image:
+
+   ```
+   docker build -t moia/scala-sbt-kubernetes-aws-docker:8u151-2.12.5-1.0.4-1.8.3-1.7.1 .
+   ```
+3. Push Docker image:
+
+   ```
+   docker login
+   docker push moia/scala-sbt-kubernetes-aws-docker:8u151-2.12.5-1.0.4-1.8.3-1.7.1
+   ```
+
 ## License ##
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
