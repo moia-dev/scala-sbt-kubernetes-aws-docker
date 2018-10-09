@@ -4,7 +4,6 @@ This repository contains **Dockerfile** of:
 * [Scala](http://www.scala-lang.org)
 * [sbt](http://www.scala-sbt.org)
 * [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
-* [kops](https://github.com/kubernetes/kops)
 * [AWS CLI](https://aws.amazon.com/cli/)
 * [Docker](https://www.docker.com/)
 
