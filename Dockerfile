@@ -2,7 +2,6 @@
 # - Scala
 # - SBT
 # - kubectl
-# - kops
 # - AWS CLI
 # - Docker
 
@@ -13,7 +12,6 @@ FROM openjdk:8u171
 ENV SCALA_VERSION=2.12.7
 ENV SBT_VERSION=1.2.3
 ENV KUBECTL_VERSION=v1.10.4
-ENV KOPS_VERSION=1.10.0
 ENV HOME=/config
 
 # Scala expects this file
@@ -44,15 +42,13 @@ RUN ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws && \
     rm awscli-bundle.zip && \
     rm -Rf awscli-bundle
 
-# Install kubectl and kops
+# Install kubectl
 # Note: Latest version may be found on:
 # https://aur.archlinux.org/packages/kubectl-bin/
 RUN set -x \
-  && curl -O --location --silent --show-error https://github.com/kubernetes/kops/releases/download/${KOPS_VERSION}/kops-linux-amd64 \
-  && mv kops-linux-amd64 /usr/local/bin/kops \
   && curl -LO https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
   && mv kubectl /usr/local/bin/kubectl \
-  && chmod +x /usr/local/bin/kops /usr/local/bin/kubectl
+  && chmod +x /usr/local/bin/kubectl
 
 RUN set -x && \
     chmod +x /usr/local/bin/kubectl && \
