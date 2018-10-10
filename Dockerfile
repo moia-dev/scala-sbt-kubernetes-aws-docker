@@ -11,7 +11,7 @@ FROM openjdk:8u171
 # Environment variables
 ENV SCALA_VERSION=2.12.7
 ENV SBT_VERSION=1.2.3
-ENV KUBECTL_VERSION=v1.10.4
+ENV KUBECTL_VERSION=v1.9.11
 ENV HOME=/config
 
 # Scala expects this file
