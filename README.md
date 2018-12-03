@@ -43,13 +43,13 @@ docker run -it --rm moia/scala-sbt-kubernetes-aws-docker
 2. Build Docker image:
 
    ```
-   docker build -t moia/scala-sbt-kubernetes-aws-docker:8u171-2.12.7-1.2.3-1.10.4 .
+   docker build -t moia/scala-sbt-kubernetes-aws-docker:8u181-2.12.7-1.2.6-1.12.3 .
    ```
 3. Push Docker image:
 
    ```
    docker login
-   docker push moia/scala-sbt-kubernetes-aws-docker:8u171-2.12.7-1.2.3-1.10.4
+   docker push moia/scala-sbt-kubernetes-aws-docker:8u181-2.12.7-1.2.6-1.12.3
    ```
 
 ## License ##
