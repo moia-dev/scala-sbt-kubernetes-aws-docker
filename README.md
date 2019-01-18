@@ -55,3 +55,17 @@ docker run -it --rm moia/scala-sbt-kubernetes-aws-docker
 ## License ##
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
+
+## Update
+
+1. Edit `Dockerfile` and insert the latest versions of
+   * OpenJDK (https://hub.docker.com/_/openjdk)
+   * Scala (https://github.com/scala/scala/releases)
+   * SBT (https://github.com/sbt/sbt/releases)
+   * Kubectl (https://github.com/kubernetes/kubernetes/releases) 
+     > Note: Max. 2 versions higher then current server version. Run `kubectl version` to get the server version.
+2. Make sure theimage can be built with `docker build .`
+3. Commit and push the changes
+4. Create a release on GitHub (https://github.com/moia-dev/scala-sbt-kubernetes-aws-docker/releases)
+5. Build and tag the image (see above)
+6. Push to the docker hub
