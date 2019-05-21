@@ -1,17 +1,19 @@
 # Dockerfile that contains
 # - Scala
-# - SBT
+# - SBT (from base image)
 # - kubectl
 # - AWS CLI
-# - Docker
+# - Docker (from base image)
 
-# Pull base image
-FROM openjdk:8u181
+# Pull base image (https://circleci.com/docs/2.0/circleci-images/#openjdk)
+# https://github.com/CircleCI-Public/circleci-dockerfiles/blob/master/openjdk/images/8u212-jdk-stretch/Dockerfile
+FROM circleci/openjdk:8u212-jdk-stretch
+
+USER root
 
 # Environment variables
 ENV SCALA_VERSION=2.12.8
-ENV SBT_VERSION=1.2.8
-ENV KUBECTL_VERSION=v1.12.5
+ENV KUBECTL_VERSION=v1.14.2
 ENV HOME=/config
 
 # Scala expects this file
@@ -23,15 +25,6 @@ RUN \
   curl -fsL https://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz | tar xfz - -C /root/ && \
   echo >> /root/.bashrc && \
   echo "export PATH=~/scala-$SCALA_VERSION/bin:$PATH" >> /root/.bashrc
-
-# Install sbt
-RUN \
-  curl -L -o sbt-$SBT_VERSION.deb https://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb && \
-  dpkg -i sbt-$SBT_VERSION.deb && \
-  rm sbt-$SBT_VERSION.deb && \
-  apt-get update && \
-  apt-get install sbt && \
-  sbt sbtVersion
 
 # Install the AWS CLI
 # RUN set -x && \
@@ -50,19 +43,10 @@ RUN set -x \
   && mv kubectl /usr/local/bin/kubectl \
   && chmod +x /usr/local/bin/kubectl
 
-RUN set -x && \
-    chmod +x /usr/local/bin/kubectl && \
-    \
-    # Create non-root user (with a randomly chosen UID/GUI).
-    adduser kubectl -Du 2342 -h /config && \
-    kubectl version --client
+# Create non-root user (with a randomly chosen UID/GUI).
+RUN useradd --uid 2342 --home /config kubectl
 
-# Install Docker
-RUN set -x && \
-  apt-get install -y software-properties-common apt-transport-https  && \
-  curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | apt-key add -  && \
-  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"  && \
-  apt-get update && apt-get install -y docker-ce
+RUN kubectl version --client
 
 # Define working directory
 WORKDIR /root
