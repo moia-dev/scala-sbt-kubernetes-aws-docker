@@ -20,7 +20,7 @@ RUN \
     bash ca-certificates coreutils curl gawk git grep groff gzip \
     jq less python sed tar zip software-properties-common apt-transport-https && \
   apt-get clean && \
-  rm -rf /var/lib/apt/lists/* && \
+  rm -rf /var/lib/apt/lists/*
 
 # Install Scala
 ## Piping curl directly in tar
@@ -77,3 +77,5 @@ RUN \
 
 # Define working directory
 WORKDIR /root
+
+RUN echo -e "Tag for this image:\n$(java -version 2>&1 | head -n 1 | grep -o '[[:digit:]._]*')-${SCALA_VERSION}-${SBT_VERSION}-${KUBECTL_VERSION}"
