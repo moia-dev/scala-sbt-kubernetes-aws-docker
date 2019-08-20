@@ -1,6 +1,8 @@
 # Dockerfile with Scala, SBT, Kubernetes, AWS CLI and Docker
 
-This repository contains **Dockerfile** of:
+**NOTE**: It is recommended to use https://github.com/moia-dev/scala-on-circleci instead
+
+This repository contains a **Dockerfile** with:
 * [Scala](http://www.scala-lang.org)
 * [sbt](http://www.scala-sbt.org)
 * [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
@@ -62,7 +64,7 @@ This code is open source software licensed under the [Apache 2.0 License]("http:
    * OpenJDK (https://hub.docker.com/_/openjdk)
    * Scala (https://github.com/scala/scala/releases)
    * SBT (https://github.com/sbt/sbt/releases)
-   * Kubectl (https://github.com/kubernetes/kubernetes/releases) 
+   * Kubectl (https://github.com/kubernetes/kubernetes/releases)
      > Note: Max. 2 versions higher then current server version. Run `kubectl version` to get the server version.
 2. Make sure theimage can be built with `docker build .`
 3. Commit and push the changes
