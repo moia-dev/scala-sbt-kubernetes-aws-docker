@@ -1,6 +1,6 @@
 # Dockerfile with Scala, SBT, Kubernetes, AWS CLI and Docker
 
-**NOTE**: It is recommended to use https://github.com/moia-dev/scala-on-circleci instead
+# **NOTE**: This repository is no longer maintaned. Use https://github.com/moia-dev/scala-on-circleci instead.
 
 This repository contains a **Dockerfile** with:
 * [Scala](http://www.scala-lang.org)
