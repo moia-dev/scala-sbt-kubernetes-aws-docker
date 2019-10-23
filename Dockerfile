@@ -11,7 +11,7 @@ FROM openjdk:8u222
 # Environment variables
 ENV SCALA_VERSION=2.12.9
 ENV SBT_VERSION=1.2.8
-ENV KUBECTL_VERSION=v1.14.5
+ENV KUBECTL_VERSION=v1.14.7
 
 # Install some tools
 RUN \
